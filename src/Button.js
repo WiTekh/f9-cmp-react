@@ -1,19 +1,22 @@
 import React from 'react';
-const { TerraformCloud } = require('terraform-cloud');
+import { Terraformer } from "@terraform-js/terraform-js";
 
 async function executeTerraformApply() {
-    try {
-        const { Account, Plans, Runs } = new TerraformCloud('terraform-api-token');
-
-        // Perform an action over a run ex: (apply, cancel, discard, force-cancel, force-execute)
-        Runs.action('apply', 'run-id', { data: { comment: 'apply run' } }).then(() => {
-  // handle run action
-        }) 
-
-        console.log('Terraform apply completed successfully!');
-    } catch (error) {
-        console.error('Error executing Terraform apply:', error);
-    }
+    console.log("prout prout dans la soupe");
+    /*
+    const config = {
+        logLevel: 'INFO',         // supported values: TRACE, DEBUG, INFO, WARN or ERROR. Default is INFO
+        workspace: 'default',     // workspace name if you want to create a new workspace. Default workspace is 'default'
+        pluginDirectory: null,    // directory where you want to install terraform provider plugin
+        templateDirectory: '.',   // directory where terraform templates are present
+        workingDirectory: '.'     // directory where tf state file will be generated
+      }
+      
+      const tf = new Terraformer(config);
+      
+      tf.apply().then().catch((err)=>{
+        console.log(err);
+      });*/
 }
 class ButtonComponent extends React.Component {
   handleClick = () => {
