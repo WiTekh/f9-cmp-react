@@ -1,8 +1,6 @@
 import React from 'react';
 import ButtonComponent from './Button';
 
-const { TC } = require('terraform-cloud');
-
 function onClick(){
   console.log("Terraform here")
 }
