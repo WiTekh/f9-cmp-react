@@ -1,15 +1,23 @@
 import React from 'react';
+import Button from 'react-native';
+
 const { TC } = require('terraform-cloud');
 
+function onClick(){
+  console.log("Terraform here")
+}
 function App() {
-  const value = 'World';
-  const scaleOut = () => {
-    console.log("Terraform apply here ...");
-  };
   return (
   <div>
-    Flambant 9 - CMP
-    <button type="button" onclick={scaleOut}>SCALE OUUUUT</button>
+    <header>
+      <h1>Flambant 9 - CMP</h1>
+    </header>
+    <body>
+      <Button
+        title="SCALE OUUUUT"
+        onPress={onClick()}
+      />
+    </body>
   </div>);
 
 }
