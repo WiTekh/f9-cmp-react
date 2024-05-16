@@ -1,24 +1,35 @@
 import React from 'react';
 const { TerraformCloud } = require('terraform-cloud');
 
+async function executeTerraformApply() {
+    try {
+        // Initialize TerraformCloud with your API token
+        const terraformCloud = new TerraformCloud({
+            token: 'your-terraform-cloud-api-token',
+        });
+
+        // Get your organization and workspace IDs
+        const orgName = 'your-organization-name';
+        const workspaceName = 'your-workspace-name';
+
+        const organization = await terraformCloud.getOrganizationByName(orgName);
+        const workspace = await terraformCloud.getWorkspaceByName(organization.id, workspaceName);
+
+        // Trigger a plan and apply
+        const run = await terraformCloud.apply(organization.id, workspace.id);
+
+        // Wait for the run to complete
+        await terraformCloud.waitForRunCompletion(organization.id, workspace.id, run.id);
+
+        console.log('Terraform apply completed successfully!');
+    } catch (error) {
+        console.error('Error executing Terraform apply:', error);
+    }
+}
 class ButtonComponent extends React.Component {
   handleClick = () => {
     console.log("Terraform here");
-    // Configurer l'accès à Terraform Cloud
-    const terraformCloud = new TerraformCloud({
-        organization: 'your-organization',
-        workspace: 'your-workspace',
-        apiToken: 'your-api-token',
-    });
-  
-  // Appliquer les modifications
-  terraformCloud.apply('auto-approve')
-    .then((result) => {
-      console.log('Changements appliqués avec succès:', result);
-    })
-    .catch((error) => {
-      console.error('Erreur lors de l\'application des changements:', error);
-    });
+    executeTerraformApply();
   }
 
   render() {
