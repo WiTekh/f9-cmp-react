@@ -3,10 +3,15 @@ const { TC } = require('terraform-cloud');
 
 function App() {
   const value = 'World';
-  return 
-  <div>Hello {value} 
-    <button>yo</button>
-  </div>;
+  const scaleOut = () => {
+    console.log("Terraform apply here ...");
+  };
+  return (
+  <div>
+    Flambant 9 - CMP
+    <button type="button" onclick={scaleOut}>SCALE OUUUUT</button>
+  </div>);
+
 }
 
 export default App;
