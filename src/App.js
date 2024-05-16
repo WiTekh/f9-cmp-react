@@ -1,5 +1,5 @@
 import React from 'react';
-const { Terra } = require('terraform-cloud');
+const { TC } = require('terraform-cloud');
 
 function App() {
   const value = 'World';
