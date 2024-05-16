@@ -1,4 +1,5 @@
 import React from 'react';
+const { Terra } = require('terraform-cloud/api');
 
 function App() {
   const value = 'World';
