@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-native';
+import ButtonComponent from './Button';
 
 const { TC } = require('terraform-cloud');
 
@@ -13,10 +13,7 @@ function App() {
       <h1>Flambant 9 - CMP</h1>
     </header>
     <body>
-      <Button
-        title="SCALE OUUUUT"
-        onPress={onClick()}
-      />
+      <ButtonComponent />
     </body>
   </div>);
 
