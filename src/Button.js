@@ -3,23 +3,12 @@ const { TerraformCloud } = require('terraform-cloud');
 
 async function executeTerraformApply() {
     try {
-        // Initialize TerraformCloud with your API token
-        const terraformCloud = new TerraformCloud({
-            token: 'your-terraform-cloud-api-token',
-        });
+        const { Account, Plans, Runs } = new TerraformCloud('terraform-api-token');
 
-        // Get your organization and workspace IDs
-        const orgName = 'your-organization-name';
-        const workspaceName = 'your-workspace-name';
-
-        const organization = await terraformCloud.getOrganizationByName(orgName);
-        const workspace = await terraformCloud.getWorkspaceByName(organization.id, workspaceName);
-
-        // Trigger a plan and apply
-        const run = await terraformCloud.apply(organization.id, workspace.id);
-
-        // Wait for the run to complete
-        await terraformCloud.waitForRunCompletion(organization.id, workspace.id, run.id);
+        // Perform an action over a run ex: (apply, cancel, discard, force-cancel, force-execute)
+        Runs.action('apply', 'run-id', { data: { comment: 'apply run' } }).then(() => {
+  // handle run action
+        }) 
 
         console.log('Terraform apply completed successfully!');
     } catch (error) {
